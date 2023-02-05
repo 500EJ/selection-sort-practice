@@ -1,18 +1,22 @@
 export function selectionSort(arr: number[]): number[] {
-  // Copy the original array
-
-  // Create an array to store the sorted values
-
-  // While the array is not empty...
-
-    // Do not move this console.log
+  const array = arr.slice();
+  const sorted: number[] = [];
+  while (array.length) {
     console.log(sorted.join(","));
-
-    // Find the index of the minimum value in the unsorted half
-
-    // Save and remove the value at the min index
-
-    // Add the min value to the end of the sorted array
+    let minIndex = 0;
+    for (let i = 1; i < array.length; i++) {
+      const [current, min] = [array[i], array[minIndex]];
+      if (current != null && min != null && current < min) minIndex = i;
+    }
+    const min = array[minIndex];
+    for (let i = minIndex + 1; i < array.length; i++) {
+      const current = array[i];
+      if (current != null) array[i - 1] = current;
+    }
+    array.pop();
+    if (min != null) sorted.push(min);
+  }
+  return sorted;
 }
 
 export function selectionSortInPlace(arr: number[]): number[] {
