@@ -20,20 +20,21 @@ export function selectionSort(arr: number[]): number[] {
 }
 
 export function selectionSortInPlace(arr: number[]): number[] {
-  // Set a pointer at zero diving the array into sorted and unsorted halves
-
-  // Repeat while the unsorted half is not empty:
-
-    // Do not move this console.log
+  let divider = 0;
+  while (arr[divider] != null) {
     console.log(arr.join(","));
-
-    // Find the index of the minimum value in the unsorted half
-
-    // Save the min value
-
-    // Shift every unsorted value to the left of the min value to the right by 1
-
-    // Put the min value at the divider
-
-    // Increment the divider and repeat
+    let minIndex = divider;
+    for (let i = divider + 1; i < arr.length; i++) {
+      const [current, min] = [arr[i], arr[minIndex]];
+      if (current != null && min != null && current < min) minIndex = i;
+    }
+    const min = arr[minIndex];
+    for (let i = minIndex - 1; i >= divider; i--) {
+      const current = arr[i];
+      if (current != null) arr[i + 1] = current;
+    }
+    if (min != null) arr[divider] = min;
+    divider++;
+  }
+  return arr;
 }
